@@ -3,9 +3,9 @@ from flask import Flask
 app = Flask(__name__)
 
 # Home route
-@app.route('/test')
-def test():
-    return {"test": ["test1", "test2", "test3"]}
+@app.route('/')
+def home():
+    return "Flask app is running!"
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=5001, debug=True)
+    app.run()
