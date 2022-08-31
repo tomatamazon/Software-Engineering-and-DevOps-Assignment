@@ -33,10 +33,7 @@ def get_pass(boto3, base64, ClientError):
         # Decrypts secret using the associated KMS key.
         if 'SecretString' in get_secret_value_response:
             secret = get_secret_value_response['SecretString']
+            return secret
         else:
             decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
-
-    if secret is not None:
-        return secret
-    if decoded_binary_secret is not None:
-        return decoded_binary_secret
+            return decoded_binary_secret
