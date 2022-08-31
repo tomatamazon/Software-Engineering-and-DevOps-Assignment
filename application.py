@@ -4,11 +4,10 @@ import pymysql
 import boto3
 import base64
 from botocore.exceptions import ClientError
-import open_pass, get_pass, get_keys
+import get_pass, get_keys, login
 
 application = app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 ec2_dns = "ec2-54-89-239-77.compute-1.amazonaws.com"
-# db_pass = open_pass.get_pass()
 db_pass = get_pass.get_pass(boto3, base64, ClientError)
 db_keys = get_keys.get_keys(boto3, base64, ClientError)
 
@@ -17,5 +16,6 @@ db_keys = get_keys.get_keys(boto3, base64, ClientError)
 def home(path):
     return send_from_directory(application.static_folder, "index.html")
 
-# if __name__ == "__main__":
-#     application.run()
+@application.route("/login", methods={"POST"})
+def login_func():
+    user_type = login.login(ec2_dns, db_pass, db_keys)
