@@ -8,7 +8,7 @@ import HomePage from "./HomePage";
 function App() {
     return(
         <div>
-            Test if frontend change is reflected
+            Yay you can see this change!
         </div>
     )
     // const [accessLevel, setAccessLevel] = useState("");
