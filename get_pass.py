@@ -17,7 +17,9 @@ def get_pass(boto3, base64, ClientError):
         get_secret_value_response = client.get_secret_value(
             SecretId=secret_name
         )
+        print("get_secret_value_response is", get_secret_value_response)
         print("Hola 3")
+
     except ClientError as e:
         if e.response['Error']['Code'] == 'DecryptionFailureException':
             # Secrets Manager cannot decrypt the protected secret using the provided KMS key.
