@@ -2,6 +2,10 @@ from flask import jsonify, make_response
 from application import request, SSHTunnelForwarder, pymysql
 
 def login(ec2_dns, db_pass, db_keys):
+
+    print("DB pass is", db_pass)
+    print("DB key is", db_keys)
+
     username = request.json["username"]
     password = request.json["password"]
 
