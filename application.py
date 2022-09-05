@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory, render_template
+import logging
 from sshtunnel import SSHTunnelForwarder
 import pymysql
 import boto3
