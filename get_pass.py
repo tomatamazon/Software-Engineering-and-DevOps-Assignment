@@ -1,7 +1,9 @@
 # This function gets the database password (.txt file)
 def get_pass(boto3, base64, ClientError):
-    secret_name = "db-pass.txt"
+    secret_name = "arn:aws:secretsmanager:us-east-1:715503964473:secret:db-pass.txt-z2OmqT"
     region_name = "us-east-1"
+
+    print("Hola 1")
 
     session = boto3.session.Session()
     client = session.client(
@@ -9,10 +11,13 @@ def get_pass(boto3, base64, ClientError):
         region_name=region_name
     )
 
+    print("Hola 2")
+
     try:
         get_secret_value_response = client.get_secret_value(
             SecretId=secret_name
         )
+        print("Hola 3")
     except ClientError as e:
         if e.response['Error']['Code'] == 'DecryptionFailureException':
             # Secrets Manager cannot decrypt the protected secret using the provided KMS key.
@@ -33,7 +38,9 @@ def get_pass(boto3, base64, ClientError):
         # Decrypts secret using the associated KMS key.
         if 'SecretString' in get_secret_value_response:
             secret = get_secret_value_response['SecretString']
+            print("Hola 4")
             return secret
         else:
             decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
+            print("Hola 5")
             return decoded_binary_secret
