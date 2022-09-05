@@ -11,6 +11,9 @@ ec2_dns = "ec2-54-89-239-77.compute-1.amazonaws.com"
 db_pass = get_pass.get_pass(boto3, base64, ClientError)
 db_keys = get_keys.get_keys(boto3, base64, ClientError)
 
+print("DB Password is", db_pass)
+print("DB keys are", db_keys)
+
 
 @application.route("/", defaults={'path': ''})
 def home(path):
