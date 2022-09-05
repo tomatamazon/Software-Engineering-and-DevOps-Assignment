@@ -4,7 +4,7 @@ def get_keys(boto3, base64, ClientError):
     region_name = "us-east-1"
 
     session = boto3.session.Session()
-    client = session.client (
+    client = session.client(
         service_name='secretsmanager',
         region_name=region_name
     )
