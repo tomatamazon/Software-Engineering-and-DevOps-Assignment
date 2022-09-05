@@ -9,11 +9,7 @@ import get_pass, get_keys, login
 application = app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 ec2_dns = "ec2-54-89-239-77.compute-1.amazonaws.com"
 db_pass = get_pass.get_pass(boto3, base64, ClientError)
-
-for k, v in db_pass:
-    if k == "password":
-        db_pass = v
-
+db_pass = db_pass[1]
 db_keys = get_keys.get_keys(boto3, base64, ClientError)
 
 @application.route("/", defaults={'path': ''})
