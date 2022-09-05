@@ -21,18 +21,23 @@ def get_pass(boto3, base64, ClientError):
     except ClientError as e:
         if e.response['Error']['Code'] == 'DecryptionFailureException':
             # Secrets Manager cannot decrypt the protected secret using the provided KMS key.
+            print("e1")
             raise "Decryption Error. Secrets Manager cannot decrypt the protected secret using the provided KMS key."
         elif e.response['Error']['Code'] == 'InternalServiceErrorException':
             # An error occurred on the server side.
+            print("e2")
             raise "Internal Service Error. There is an error on the server side. Please try again later."
         elif e.response['Error']['Code'] == 'InvalidParameterException':
             # You provided an invalid value for a parameter.
+            print("e3")
             raise "Invalid Parameter. You provided an invalid value for a parameter."
         elif e.response['Error']['Code'] == 'InvalidRequestException':
             # You provided a parameter value that is not valid for the current state of the resource.
+            print("e4")
             raise "Invalid Request. You provided a parameter value that is not valid for the current state of the resource."
         elif e.response['Error']['Code'] == 'ResourceNotFoundException':
             # The resource requested cannot be found.
+            print("e5")
             raise "Resource Not Found. The resource that you requested could not be found."
     else:
         # Decrypts secret using the associated KMS key.
