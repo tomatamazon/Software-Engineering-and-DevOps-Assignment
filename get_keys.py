@@ -1,6 +1,6 @@
 # This function gets the database keys (.pem file)
 def get_keys(boto3, base64, ClientError):
-    secret_name = "db-keys.pem"
+    secret_name = "arn:aws:secretsmanager:us-east-1:715503964473:secret:db-keys.pem-k8P1gV"
     region_name = "us-east-1"
 
     session = boto3.session.Session()
