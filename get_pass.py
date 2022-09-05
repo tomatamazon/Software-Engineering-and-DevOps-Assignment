@@ -3,15 +3,11 @@ def get_pass(boto3, base64, ClientError):
     secret_name = "arn:aws:secretsmanager:us-east-1:715503964473:secret:db-pass.txt-z2OmqT"
     region_name = "us-east-1"
 
-    print("Hola 1")
-
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',
         region_name=region_name
     )
-
-    print("Hola 2")
 
     try:
         print("Trying here (try)")
@@ -19,7 +15,7 @@ def get_pass(boto3, base64, ClientError):
             SecretId=secret_name
         )
         print("get_secret_value_response is", get_secret_value_response)
-        print("Hola 3")
+        print("this should work now")
 
     except ClientError as e:
         if e.response['Error']['Code'] == 'DecryptionFailureException':
@@ -43,7 +39,7 @@ def get_pass(boto3, base64, ClientError):
             print("e5")
             raise "Resource Not Found. The resource that you requested could not be found."
         else:
-            print("The error is something else")
+            print("We're still here")
             raise e
     else:
         print("Hola 4")
