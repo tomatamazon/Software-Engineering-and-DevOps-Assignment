@@ -14,6 +14,7 @@ def get_pass(boto3, base64, ClientError):
     print("Hola 2")
 
     try:
+        print("Trying here (try)")
         get_secret_value_response = client.get_secret_value(
             SecretId=secret_name
         )
@@ -41,9 +42,15 @@ def get_pass(boto3, base64, ClientError):
             # The resource requested cannot be found.
             print("e5")
             raise "Resource Not Found. The resource that you requested could not be found."
+        else:
+            print("The error is something else")
+            raise e
     else:
+        print("Hola 4")
         # Decrypts secret using the associated KMS key.
         if 'SecretString' in get_secret_value_response:
+            print(get_secret_value_response)
             return get_secret_value_response['SecretString']
         else:
+            print(get_secret_value_response)
             return base64.b64decode(get_secret_value_response['SecretBinary'])
