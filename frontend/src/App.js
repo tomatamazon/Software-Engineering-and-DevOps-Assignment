@@ -13,7 +13,7 @@ function App() {
         return (<LoginPage setAccessLevel={setAccessLevel}/>);
     } else {
         return (<HomePage accessLevel={accessLevel} setAccessLevel={setAccessLevel}/>);
-    }
+    };
 }
 
 export default App;
