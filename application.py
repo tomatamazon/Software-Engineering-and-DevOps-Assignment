@@ -15,7 +15,7 @@ db_pass_to_dict = json.loads(db_pass)
 db_pass = db_pass_to_dict["password"]
 
 db_keys = get_keys.get_keys(boto3, base64, ClientError)
-db_keys = json.loads(db_keys.read())
+# db_keys = json.loads(db_keys.read())
 # db_keys = db_keys[""]
 
 # FOR TESTING
