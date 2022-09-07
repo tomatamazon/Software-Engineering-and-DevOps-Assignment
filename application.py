@@ -15,6 +15,13 @@ db_pass_to_dict = json.loads(db_pass)
 db_pass = db_pass_to_dict["password"]
 
 db_keys = get_keys.get_keys(boto3, base64, ClientError)
+db_keys = json.loads(db_keys)
+# db_keys = db_keys[""]
+
+# FOR TESTING
+# pass_file = open("db-pass.txt", 'r')
+# db_pass = pass_file.read()
+# pass_file.close()
 
 @application.route("/", defaults={'path': ''})
 def home(path):
@@ -22,5 +29,5 @@ def home(path):
 
 @application.route("/login", methods=["POST"])
 def login_func():
-    user_type = login.login(ec2_dns, db_pass, db_keys)
+    user_type = login.login(ec2_dns, db_pass)
     return user_type
