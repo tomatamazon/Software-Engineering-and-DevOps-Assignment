@@ -29,5 +29,5 @@ def home(path):
 
 @application.route("/login", methods=["POST"])
 def login_func():
-    user_type = login.login(ec2_dns, db_pass)
+    user_type = login.login(ec2_dns, db_pass, db_keys)
     return user_type
