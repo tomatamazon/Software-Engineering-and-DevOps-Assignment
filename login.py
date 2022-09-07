@@ -1,7 +1,7 @@
 from flask import jsonify, make_response
 from application import request, SSHTunnelForwarder, pymysql
 
-def login(ec2_dns, db_pass, db_keys):
+def login(ec2_dns, db_pass):
 
     # print("ec2_dns is", ec2_dns)
     # print("DB pass is", db_pass)
