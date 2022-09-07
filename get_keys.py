@@ -13,6 +13,7 @@ def get_keys(boto3, base64, ClientError):
         get_secret_value_response = client.get_secret_value(
             SecretId=secret_name
         )
+        
     except ClientError as e:
         if e.response['Error']['Code'] == 'DecryptionFailureException':
             # Secrets Manager cannot decrypt the protected secret using the provided KMS key.
@@ -29,6 +30,8 @@ def get_keys(boto3, base64, ClientError):
         elif e.response['Error']['Code'] == 'ResourceNotFoundException':
             # The resource requested cannot be found.
             raise "Resource Not Found. The resource that you requested could not be found."
+        else:
+            raise e
     else:
         # Decrypts secret using the associated KMS key.
         if 'SecretString' in get_secret_value_response:
