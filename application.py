@@ -14,20 +14,6 @@ db_pass = get_pass.get_pass(boto3, base64, ClientError)
 db_pass_to_dict = json.loads(db_pass)
 db_pass = db_pass_to_dict["password"]
 
-# db_pass = "seado-db1!"
-
-db_keys = get_keys.get_keys(boto3, base64, ClientError)
-print("hello", db_keys)
-# db_keys_to_dict = json.loads(db_keys)
-# db_keys = db_keys_to_dict["db_key"]
-# db_keys = json.loads(db_keys.read())
-# db_keys = db_keys[""]
-
-# FOR TESTING
-# pass_file = open("db-pass.txt", 'r')
-# db_pass = pass_file.read()
-# pass_file.close()
-
 @application.route("/", defaults={'path': ''})
 def home(path):
     return send_from_directory(application.static_folder, "index.html")
