@@ -19,6 +19,7 @@ def login(ec2_dns, db_pass, db_keys):
         ec2_dns,
         ssh_username="ec2-user",
         ssh_pkey=db_keys,
+        ssh_password=db_pass,
         remote_bind_address=("seado-db.cnqarh1c5gpt.us-east-1.rds.amazonaws.com", 3306)
     ) as tunnel:
         tunnel.start()
