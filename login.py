@@ -8,7 +8,7 @@ def login(ec2_dns, db_pass, db_keys):
     # print("DB key is", db_keys)
     # print("Type of DB pass is", type(db_pass))
     # print("Type of DB key is", type(db_keys))
-    print("DB keys is", db_keys)
+    # print("DB keys is", db_keys)
 
     username = request.json["username"]
     password = request.json["password"]
