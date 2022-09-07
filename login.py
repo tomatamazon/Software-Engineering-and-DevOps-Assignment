@@ -1,7 +1,7 @@
 from flask import jsonify, make_response
 from application import request, SSHTunnelForwarder, pymysql
 
-def login(ec2_dns, db_pass):
+def login(ec2_dns, db_pass, db_keys):
 
     # print("ec2_dns is", ec2_dns)
     # print("DB pass is", db_pass)
@@ -19,7 +19,7 @@ def login(ec2_dns, db_pass):
     with SSHTunnelForwarder(
         ec2_dns,
         ssh_username="ec2-user",
-        ssh_pkey="db-keys.pem",
+        ssh_pkey=db_keys,
         remote_bind_address=("seado-db.cnqarh1c5gpt.us-east-1.rds.amazonaws.com", 3306)
     ) as tunnel:
         tunnel.start()

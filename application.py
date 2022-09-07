@@ -16,7 +16,7 @@ db_pass = db_pass_to_dict["password"]
 
 # db_pass = "seado-db1!"
 
-# db_keys = get_keys.get_keys(boto3, base64, ClientError)
+db_keys = get_keys.get_keys(boto3, base64, ClientError)
 # db_keys = json.loads(db_keys.read())
 # db_keys = db_keys[""]
 
@@ -31,5 +31,5 @@ def home(path):
 
 @application.route("/login", methods=["POST"])
 def login_func():
-    user_type = login.login(ec2_dns, db_pass)
+    user_type = login.login(ec2_dns, db_pass, db_keys)
     return user_type
