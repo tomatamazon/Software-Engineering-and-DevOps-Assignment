@@ -3,9 +3,11 @@ from application import request, SSHTunnelForwarder, pymysql
 
 def login(ec2_dns, db_pass, db_keys):
 
+    print("ec2_dns is", ec2_dns)
     print("DB pass is", db_pass)
     print("DB key is", db_keys)
     print("Type of DB pass is", type(db_pass))
+    print("Type of DB key is", type(db_keys))
 
     username = request.json["username"]
     password = request.json["password"]
