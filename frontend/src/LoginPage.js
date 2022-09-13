@@ -1,5 +1,5 @@
 import {Alert, Button, Form} from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 async function getUserPerms(username, password) {
     const response = await fetch("/login", {
