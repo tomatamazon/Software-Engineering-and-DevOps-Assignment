@@ -37,6 +37,7 @@ function LoginPage(props) {
                 setLoginProblem(false);
                 console.log(userPerms)
                 props.setAccessLevel(userPerms);
+                console.log("The issue is above")
             }
         }
     };
