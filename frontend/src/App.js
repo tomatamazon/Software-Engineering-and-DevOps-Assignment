@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginPage from "./LoginPage";
-import HomePage from "./HomePage";
+import LoginPage from './LoginPage';
+import HomePage from './HomePage';
 
 
 function App() {
