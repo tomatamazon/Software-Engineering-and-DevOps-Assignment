@@ -33,7 +33,9 @@ function LoginPage(props) {
             if (userPerms === "invalid") {
                 setLoginProblem(true);
             } else {
+                console.log("Hello")
                 setLoginProblem(false);
+                console.log(userPerms)
                 props.setAccessLevel(userPerms);
             }
         }
