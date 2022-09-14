@@ -1,6 +1,5 @@
 import {Alert, Button, Form} from 'react-bootstrap';
-import React, {useState} from 'react';
-import App from './App.js';
+import React, { useState } from 'react';
 
 async function getUserPerms(username, password) {
     const response = await fetch("/login", {
@@ -37,7 +36,9 @@ function LoginPage(props) {
                 setLoginProblem(false);
                 console.log(userPerms)
                 console.log(props)
-                props.setAccessLevel(userPerms)
+                console.log(props.accessLevel)
+                props.setAccessLevelFunc(userPerms)
+                console.log("Here we are!")
             }
         }
     };
