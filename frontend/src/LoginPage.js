@@ -1,5 +1,6 @@
 import {Alert, Button, Form} from 'react-bootstrap';
 import React, {useState} from 'react';
+import App from './App.js';
 
 async function getUserPerms(username, password) {
     const response = await fetch("/login", {
@@ -33,11 +34,9 @@ function LoginPage(props) {
             if (userPerms === "invalid") {
                 setLoginProblem(true);
             } else {
-                console.log("Hello")
                 setLoginProblem(false);
                 console.log(userPerms)
                 props.setAccessLevel(userPerms)
-                console.log("The issue is above")
             }
         }
     };
