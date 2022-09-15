@@ -7,7 +7,7 @@ def create_ticket(ec2_dns, db_pass):
     assignee = request.json["assignee"]
     progress_estimate = int(request.json["progress_estimate"]) - 1
 
-    post_create_ticket_query = "INSERT INTO database1.ticket_info (Title, Description, Assignee, ProgressEstimate, ProgressActual, Resolved) VALUES (%(title)s, %(description)s, %(assignee)s, %(progress_estimate)s, %(progress_actual)s, %(resolved)s);"
+    post_create_ticket_query = "INSERT INTO db.ticket_info (Title, Description, Assignee, ProgressEstimate, ProgressActual, Resolved) VALUES (%(title)s, %(description)s, %(assignee)s, %(progress_estimate)s, %(progress_actual)s, %(resolved)s);"
     parameters = {'title': title, 'description': description, 'assignee': assignee, 'progress_estimate': progress_estimate, 'progress_actual': 0, 'resolved': False}
 
     with SSHTunnelForwarder(

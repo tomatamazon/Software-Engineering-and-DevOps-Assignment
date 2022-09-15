@@ -2,7 +2,7 @@ from flask import jsonify, make_response
 from application import request, SSHTunnelForwarder, pymysql
 
 def get_entries(ec2_dns, db_pass):
-    get_database_entries_query = "SELECT * FROM database1.ticket_info;"
+    get_database_entries_query = "SELECT * FROM db.ticket_info;"
 
     with SSHTunnelForwarder(
             ec2_dns,

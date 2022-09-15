@@ -19,7 +19,7 @@ def update_entry(ec2_dns, db_pass):
     else:
         resolved = 0
 
-    update_entry_query = "UPDATE database1.ticket_info SET "
+    update_entry_query = "UPDATE db.ticket_info SET "
 
     if title != "":
         update_entry_query += "Title = '" + title + "'"
