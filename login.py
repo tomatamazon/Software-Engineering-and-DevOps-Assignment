@@ -6,8 +6,8 @@ def login(ec2_dns, db_pass):
     username = request.json["username"]
     password = request.json["password"]
 
-    # get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
-    get_login_query = "SELECT * FROM db.users WHERE Username=(%(username)s) AND Password=(%(password)s);"
+    get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
+    # get_login_query = "SELECT * FROM db.users WHERE Username=(%(username)s) AND Password=(%(password)s);"
 
     with SSHTunnelForwarder(
         ec2_dns,
