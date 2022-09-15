@@ -5,7 +5,7 @@ import pymysql
 import boto3
 import base64
 from botocore.exceptions import ClientError
-import get_pass, login, post_data, get_entries, update_entry, delete_entry
+import get_pass, login, create_ticket, get_entries, update_entry, delete_entry
 
 application = app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 ec2_dns = "ec2-54-89-239-77.compute-1.amazonaws.com"
