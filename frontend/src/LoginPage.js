@@ -1,5 +1,5 @@
 import {Alert, Button, Form} from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 async function getUserPerms(username, password) {
     const response = await fetch("/login", {
@@ -7,6 +7,7 @@ async function getUserPerms(username, password) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "username": username, "password": password })
     });
+
     const data = await response.json();
     return data.user_type;
 }
@@ -15,7 +16,7 @@ function LoginPage(props) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loginProblem, setLoginProblem] = useState("");
+    const [loginProblem, setLoginProblem] = useState(false);
 
     const handleUsername = (event) => {
         setUsername(event.target.value);
@@ -34,11 +35,7 @@ function LoginPage(props) {
                 setLoginProblem(true);
             } else {
                 setLoginProblem(false);
-                console.log(userPerms)
-                console.log(props)
-                console.log(props.accessLevel)
-                props.setAccessLevelFunc(userPerms)
-                console.log("Here we are!")
+                props.setAccessLevel(userPerms)
             }
         }
     };
