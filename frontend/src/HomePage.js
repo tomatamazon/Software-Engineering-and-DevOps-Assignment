@@ -15,9 +15,7 @@ function HomePage(props) {
     const createTicket = () => {
         setCreateTicketState(true);
     }
-
-    console.log(props)
-
+    
     return (
         <div className='homepage-parent'>
             <div className='btn-group-parent'>
