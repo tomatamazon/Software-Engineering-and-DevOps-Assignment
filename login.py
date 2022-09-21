@@ -5,10 +5,15 @@ from application import request, SSHTunnelForwarder, pymysql
 
 def login(ec2_dns, db_pass):
 
-    username = request.json["username"]
-    password = request.json["password"]
+    # username = request.json["username"]
+    # password = request.json["password"]
+
+    username = "regular"
+    password = "regular"
 
     password = password.encode('utf-8')
+
+    password = bcrypt.hashpw(password, bcrypt.gensalt(10))
 
     # get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
     # get_login_query = "SELECT * FROM db.users WHERE Username=(%(username)s) AND Password=(%(password)s);"
@@ -32,7 +37,8 @@ def login(ec2_dns, db_pass):
             with conn.cursor() as cur:
                 # If the query was successful, 1 will be returned.
                 # If the query was unsuccessful, 0 will be returned.
-                response = cur.execute("""SELECT * FROM db.users WHERE Username = %(username)s AND Password = %(password)s""", {'username': username, 'password': password})
+                # response = cur.execute("""SELECT * FROM db.users WHERE Username = %(username)s AND Password = %(password)s""", {'username': username, 'password': password})
+                response = cur.execute("""INSERT INTO db.users (Username, Password) VALUES (%(username)s, %(password)s);""", {'username': username, 'password': password})
                 conn.commit()
                 if response == 1:
                     for row in cur:
@@ -43,7 +49,8 @@ def login(ec2_dns, db_pass):
         finally:
             conn.close()
             tunnel.close()
-
-    user_type_return = make_response(jsonify({"user_type": user_type}))
-    user_type_return.headers["Content-Type"] = "application/json"
-    return user_type_return
+    #
+    # user_type_return = make_response(jsonify({"user_type": user_type}))
+    # user_type_return.headers["Content-Type"] = "application/json"
+    # return user_type_return
+    return user_type
