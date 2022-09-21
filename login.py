@@ -6,7 +6,7 @@ def login(ec2_dns, db_pass):
     username = request.json["username"]
     password = request.json["password"]
 
-    get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
+    # get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
     # get_login_query = "SELECT * FROM db.users WHERE Username=(%(username)s) AND Password=(%(password)s);"
 
     with SSHTunnelForwarder(
@@ -28,7 +28,7 @@ def login(ec2_dns, db_pass):
             with conn.cursor() as cur:
                 # If the query was successful, 1 will be returned.
                 # If the query was unsuccessful, 0 will be returned.
-                response = cur.execute(get_login_query)
+                response = cur.execute("""SELECT * FROM db.users WHERE Username = %()s AND Password = %()s""", {'username': username, 'password': password})
                 if response == 1:
                     for row in cur:
                         user_type = row[1]

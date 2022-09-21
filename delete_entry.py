@@ -4,7 +4,8 @@ from application import request, SSHTunnelForwarder, pymysql
 def delete_entry(ec2_dns, db_pass):
     entry_id = request.json["id"]
 
-    delete_entry_query = "DELETE FROM db.ticket_info WHERE ID = " + str(entry_id)
+    entry_id = str(entry_id)
+    # delete_entry_query = "DELETE FROM db.ticket_info WHERE ID = " + str(entry_id)
 
     with SSHTunnelForwarder(
             ec2_dns,
@@ -25,7 +26,7 @@ def delete_entry(ec2_dns, db_pass):
             with conn.cursor() as cur:
                 # If the query is successful, a 1 will be returned.
                 # If the query is unsuccessful, a 0 will be returned.
-                response = cur.execute(delete_entry_query)
+                response = cur.execute("""DELETE FROM db.ticket_info WHERE ID = %(entry_id)s""", {'entry_id': entry_id})
                 conn.commit()
                 if response == 1:
                     delete_ticket_status = "success"
