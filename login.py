@@ -45,9 +45,9 @@ def login(ec2_dns, db_pass):
     #             else:
     #                 user_type = "invalid"
     #
-         finally:
-             conn.close()
-             tunnel.close()
+        finally:
+            conn.close()
+            tunnel.close()
     #
     # user_type_return = make_response(jsonify({"user_type": user_type}))
     # user_type_return.headers["Content-Type"] = "application/json"
