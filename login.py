@@ -39,6 +39,7 @@ def login(ec2_dns, db_pass):
                 # If the query was unsuccessful, 0 will be returned.
                 # response = cur.execute("""SELECT * FROM db.users WHERE Username = %(username)s AND Password = %(password)s""", {'username': username, 'password': password})
                 response = cur.execute("""INSERT INTO db.users (Username, Password) VALUES (%(username)s, %(password)s);""", {'username': username, 'password': password})
+                conn.commit()
                 print(response)
                 if response == 1:
                     for row in cur:
