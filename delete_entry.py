@@ -5,7 +5,6 @@ def delete_entry(ec2_dns, db_pass):
     entry_id = request.json["id"]
 
     entry_id = str(entry_id)
-    # delete_entry_query = "DELETE FROM db.ticket_info WHERE ID = " + str(entry_id)
 
     with SSHTunnelForwarder(
             ec2_dns,

@@ -8,7 +8,6 @@ function App() {
 
     const [accessLevel, setAccessLevel] = useState("");
 
-    // Maybe add the below access logic onto the backend to prevent against broken access control attacks.
     if (accessLevel === "" || accessLevel === "invalid") {
         return (<LoginPage setAccessLevel={setAccessLevel}/>);
     } else {

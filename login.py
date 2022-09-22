@@ -10,11 +10,6 @@ def login(ec2_dns, db_pass):
 
     password = password.encode('utf-8')
 
-    # password = bcrypt.hashpw(password, bcrypt.gensalt(10))
-
-    # get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
-    # get_login_query = "SELECT * FROM db.users WHERE Username=(%(username)s) AND Password=(%(password)s);"
-
     with SSHTunnelForwarder(
         ec2_dns,
         ssh_username="ec2-user",
@@ -35,7 +30,6 @@ def login(ec2_dns, db_pass):
                 # If the query was successful, 1 will be returned.
                 # If the query was unsuccessful, 0 will be returned.
                 response = cur.execute("""SELECT * FROM db.users WHERE Username = %(username)s AND Password = %(password)s""", {'username': username, 'password': password})
-                # response = cur.execute("""INSERT INTO db.users (Username, Password) VALUES (%(username)s, %(password)s);""", {'username': username, 'password': password})
                 conn.commit()
                 if response == 1:
                     for row in cur:
