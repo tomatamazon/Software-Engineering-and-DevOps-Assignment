@@ -10,7 +10,7 @@ def login(ec2_dns, db_pass):
 
     password = password.encode('utf-8')
 
-    password = bcrypt.hashpw(password, bcrypt.gensalt(10))
+    # password = bcrypt.hashpw(password, bcrypt.gensalt(10))
 
     # get_login_query = "SELECT * FROM db.users WHERE Username='" + username + "' AND Password='" + password + "';"
     # get_login_query = "SELECT * FROM db.users WHERE Username=(%(username)s) AND Password=(%(password)s);"
